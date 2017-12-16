@@ -24,11 +24,10 @@ var _http = require('http');
 
 var _http2 = _interopRequireDefault(_http);
 
-function _interopRequireDefault(obj) {
-  return obj && obj.__esModule ? obj : { default: obj };
-}
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _mongoose2.default.Promise = require('bluebird');
+
 
 // Connect to MongoDB
 _mongoose2.default.connect('mongodb://simba:1994kingsss@ds135797.mlab.com:35797/mediaboxzim');
@@ -43,6 +42,8 @@ if (_environment2.default.seedDB) {
 }
 
 // Setup server
+var ipaddress = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+var port = process.env.PORT || 8080;
 var app = (0, _express2.default)();
 var server = _http2.default.createServer(app);
 var socketio = require('socket.io')(server, {
@@ -55,8 +56,8 @@ require('./routes').default(app);
 
 // Start server
 function startServer() {
-  app.angularFullstack = server.listen(_environment2.default.port, _environment2.default.ip, function () {
-    console.log('Express server listening on %d, in %s mode', _environment2.default.port, app.get('env'));
+  app.angularFullstack = server.listen(port, function () {
+    console.log('Express server listening on %d, in %s mode', process.env.PORT, app.get('env'));
   });
 }
 
@@ -64,5 +65,4 @@ function startServer() {
 
 // Expose app
 exports = module.exports = app;
-//# sourceMappingURL=app.js.map
 //# sourceMappingURL=app.js.map
