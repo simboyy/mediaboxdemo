@@ -57,13 +57,13 @@ exports = module.exports = { // Can not put all settings here as this needs a re
         from: 'Mediabox <admin@mediabox.co.zw>',
         to: body.to,
         subject: 'Your Order Status Updated',
-        text: "Order No: " + body.orderNo + "\n Status: " + body.status + "\n\n Payment Method: " + body.payment_method + "\n\n Payment ID: " + body.id + "\n Amount: " + body.amount.total + " " + body.amount.currency + "\n\n Address: \n Name: " + body.address.recipient_name + "\n Line: " + body.address.line1 + "\n City: " + body.address.city + "\n State: " + body.address.state + "\n Zip: " + body.address.postal_code
+        text: "Order No: " + body.orderNo + "\n Status: " + body.status + "\n\n Payment Method: " + body.payment_method + "\n\n Payment ID: " + body.id + "\n Amount: " + body.amount.total + " " + body.amount.currency + "\n\n Address: \n Name: " + body.address.recipient_name + "\n Line: " + body.address.line1 + "\n City: " + body.address.city + "\n State: " + body.address.state + "\n Zip: " + body.address.postal_code + "\n "
       };
     },
     CampaignPlaced: function CampaignPlaced(body) {
       return {
         from: 'Mediabox <admin@mediabox.co.zw>',
-        to: 'smkorera@gmail.com',
+        to: body.to,
         subject: 'New Campaign',
         text: "Your campaign has been created successfully campaign No: " + body.campaignNo
 
@@ -72,9 +72,9 @@ exports = module.exports = { // Can not put all settings here as this needs a re
     CampaignUpdated: function CampaignUpdated(body) {
       return {
         from: 'Mediabox <admin@mediabox.co.zw>',
-        to: 'smkorera@gmail.com',
+        to: body.to,
         subject: 'Campaign Status Updated',
-        text: "\nYou have recieved feedback from publisher for  campaign : " + body.campaignName + "" + "View update on  Mediabox https://www.mediabox.co.zw/campaign "
+        text: "\nYou have recieved feedback from publisher for  campaign : " + body.campaignName + "" + "   View update on  Mediabox https://advertising.mediabox.co.zw/campaign"
 
       };
     }

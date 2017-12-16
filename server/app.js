@@ -24,10 +24,11 @@ var _http = require('http');
 
 var _http2 = _interopRequireDefault(_http);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj };
+}
 
 _mongoose2.default.Promise = require('bluebird');
-
 
 // Connect to MongoDB
 _mongoose2.default.connect('mongodb://simba:1994kingsss@ds135797.mlab.com:35797/mediaboxzim');
@@ -63,4 +64,5 @@ function startServer() {
 
 // Expose app
 exports = module.exports = app;
+//# sourceMappingURL=app.js.map
 //# sourceMappingURL=app.js.map

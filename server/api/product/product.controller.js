@@ -12,8 +12,12 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.productList = productList;
+exports.productList2 = productList2;
+exports.productDetails = productDetails;
 exports.index = index;
 exports.show = show;
+exports.pubProducts = pubProducts;
 exports.create = create;
 exports.update = update;
 exports.destroy = destroy;
@@ -102,6 +106,48 @@ exports.count = function (req, res) {
   }
 };
 
+// Get product liast
+// report
+function productList(req, res) {
+
+  _product2.default.aggregate([{ $match: { 'uid': req.user.email } }, { $project: { _id: 0, EmployeeID: "$name", FirstName: "$name", EmployeeName: "$name", LastName: "$name", Title: "$name", Country: "Zimbabwe", City: "Zimbabwe", Address: "$website", HomePhone: "$phone", Notes: "$info" } }], function (err, result) {
+    if (err) {
+      //console.log(err);
+      return;
+    }
+
+    return res.status(200).json(result);
+  });
+}
+
+// Get product liast
+// report
+function productList2(req, res) {
+
+  _product2.default.aggregate([{ $match: { 'uid': req.user.email } }, { $project: { _id: 0, value: "$name", text: "$name" } }], function (err, result) {
+    if (err) {
+      //console.log(err);
+      return;
+    }
+
+    return res.status(200).json(result);
+  });
+}
+
+// Get product details
+// report
+function productDetails(req, res) {
+
+  _product2.default.aggregate([{ $match: { 'uid': req.user.email } }, { $unwind: "$variants" }, { $project: { _id: 0, ProductID: "$name", ProductName: "$name", Category: "$variants.name", UnitsInStock: "1", UnitsOnOrder: "0", ReorderLevel: "1" } }], function (err, result) {
+    if (err) {
+      //console.log(err);
+      return;
+    }
+
+    return res.status(200).json(result);
+  });
+}
+
 exports.priceRange = function (req, res) {
   var q = isJson(req.query.where);
   _product2.default.findOne({}).sort('-variants.price').exec().then(function (doc, err) {
@@ -114,7 +160,7 @@ exports.priceRange = function (req, res) {
   //     {$sort:{"variants.price":-1}},
   //     // {$limit:1},
   //     function (err,data) {
-  //       // console.log('xxxxxxxxxxx',err,data);
+  //       // //console.log('xxxxxxxxxxx',err,data);
   //       if(err) { return handleError(res, err); }
   //       if(data.length>0){
   //         if(!data[data.length-1].variants.price) data[data.length-1].variants.price = 0; // If price blank for last record
@@ -129,7 +175,9 @@ exports.priceRange = function (req, res) {
 // Gets a list of Products
 function index(req, res) {
   if (req.query) {
+
     var q = isJson(req.query.where);
+    //console.log(q);
     var sort = isJson(req.query.sort);
     req.query.skip = parseInt(req.query.skip);
     req.query.limit = parseInt(req.query.limit);
@@ -150,6 +198,11 @@ function index(req, res) {
 // Gets a single Product from the DB
 function show(req, res) {
   return _product2.default.findById(req.params.id).populate({ path: 'brand' }).populate({ path: 'category' }).exec().then(handleEntityNotFound(res)).then(respondWithResult(res)).catch(handleError(res));
+}
+
+// Get all orders for a publisher
+function pubProducts(req, res) {
+  return _product2.default.find({ 'uid': req.user.email }).exec().then(respondWithResult(res)).catch(handleError(res));
 }
 
 // Creates a new Product in the DB
@@ -183,11 +236,11 @@ function update(req, res) {
   // Just to enable checking if the category has any product
   _category2.default.update({}, { $pull: { products: { _id: req.params.id } } }, { multi: true }, function removeConnectionsCB(err, obj) {
     if (req.body.category) {
-      // console.log(err,obj)
+      // //console.log(err,obj)
       _category2.default.update({ _id: req.body.category }, // Find the category from category model
       { $addToSet: { 'products': { '_id': req.params.id } } }, // Update the prduct id into category model
       function removeConnectionsCB(err, obj) {
-        // console.log(err,obj)
+        // //console.log(err,obj)
       });
     }
   });
