@@ -45,9 +45,9 @@
                             <tr>
                                 <th>#</th>
                                 <th>Publisher</th>
-                                <th>Media Option and upload </th>
+                                <th>Upload Advert </th>
                                 <th style="width: 250px">Start and End Date</th>
-                                <th style="width: 100px">Availability</th>
+                                <th style="width: 100px">Available</th>
                                 <th>Price</th>
                                 <th>Inserts</th>
                                 <th>Total</th>
@@ -97,7 +97,7 @@
                                     </div>
                                     <!-- <ng-md-icon icon="check_circle" ng-show="cart.loaded[$index]=='available'" class="material-icons md-96 success"></ng-md-icon><br>
                                     <ng-md-icon icon="highlight_off" ng-show="cart.loaded[$index]=='notavailable'"  class="material-icons md-96 cancel"></ng-md-icon> -->
-                                    &nbsp;&nbsp;&nbsp;<span ng-show="cart.loaded[$index]=='notavailable'" class="red">{{cart.available[$index]}}</span>
+                                    &nbsp;&nbsp;&nbsp;<span ng-show="cart.loaded[$index]=='notavailable'" class="green">10</span>
                                     <span ng-show="cart.loaded[$index]=='available'" class="green">{{cart.available[$index]}}</span>
                                 </td>
                                 <td>{{item.price | currency}}</td>
