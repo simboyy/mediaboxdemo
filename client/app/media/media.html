@@ -34,8 +34,7 @@
 				       <img ng-if="i.type=='image/jpg'" ng-src="{{i.path}}" draggable="false" alt="{{i.name}}">
 					<img ng-if="i.type=='image/png'" ng-src="{{i.path}}" draggable="false" alt="{{i.name}}">
 				        <img ng-if="i.type=='application/pdf'" src="https://image.ibb.co/fgMVpm/pdf.png" alt="pdf" border="0">
-				       <img   ng-if="i.type=='image/png'"ng-src="{{i.path}}" draggable="false" alt="{{i.name}}">
-					<audio ng-if="i.type=='audio/mp3'" controls ng-src="{{i.path}}"></audio>
+				        <audio ng-if="i.type=='audio/mp3'" controls ng-src="{{i.path}}"></audio>
                                        <video ng-if="i.type=='video/mp4'" controls ng-src="{{i.path}}"></video>
 				
 			</div>
