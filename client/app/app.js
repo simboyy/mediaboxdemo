@@ -7410,9 +7410,7 @@ angular.module('mediaboxApp').controller('ProductEfficiencyController', ['$q', '
 
             function success(res) {
 		
-                 this.product = res.data;
-		  var item = res.data;  
-                Toast.show({
+                 Toast.show({
                     type: 'success',
                     text: 'Product has been updated'
                 });
