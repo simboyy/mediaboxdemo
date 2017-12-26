@@ -7302,7 +7302,7 @@ angular.module('mediaboxApp').controller('ProductEfficiencyController', ['$q', '
         vm.options.statistics = angular.copy($stateParams.statistics);
         vm.options.keyfeatures = angular.copy($stateParams.keyfeatures);
 
-        console.log(vm.options.statistics);
+        
 
         // The whole category hierarchy
         vm.loading = true;
@@ -7409,8 +7409,8 @@ angular.module('mediaboxApp').controller('ProductEfficiencyController', ['$q', '
             $http.put('/api/products/' + product._id, product).then(success).catch(err);
 
             function success(res) {
-		 vm = this;
-                 vm.product = res.data;
+		
+                 this.product = res.data;
 		  var item = res.data;  
                 Toast.show({
                     type: 'success',
