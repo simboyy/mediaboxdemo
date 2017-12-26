@@ -7409,7 +7409,9 @@ angular.module('mediaboxApp').controller('ProductEfficiencyController', ['$q', '
             $http.put('/api/products/' + product._id, product).then(success).catch(err);
 
             function success(res) {
-                var item = vm.product = res.data;
+		 vm = this;
+                 vm.product = res.data;
+		  var item = res.data;  
                 Toast.show({
                     type: 'success',
                     text: 'Product has been updated'
