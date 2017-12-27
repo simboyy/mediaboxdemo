@@ -7465,9 +7465,8 @@ angular.module('mediaboxApp').controller('ProductEfficiencyController', ['$q', '
                         $mdDialog.cancel();
                     };
                     $scope.addNewImage = function () {
-                        var vm = this;
+                      
                         $state.go('media');
-                        vm.save(vm.product);
                         $mdDialog.hide();
                     };
                 }
