@@ -191,7 +191,7 @@ function index(req, res) {
       return res.status(200).json(products);
     });
   } else {
-    return _product2.default.find().sort('-created_at').exec().then(respondWithResult(res)).catch(handleError(res));
+    return _product2.default.find().sort({created_at: -1}).exec().then(respondWithResult(res)).catch(handleError(res));
   }
 }
 
