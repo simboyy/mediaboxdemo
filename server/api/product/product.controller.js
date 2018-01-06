@@ -184,7 +184,7 @@ function index(req, res) {
     var select = isJson(req.query.select);
 
     var p = [];
-    _product2.default.find(q).limit(req.query.limit).skip(req.query.skip).sort(sort).select(select).exec(function (err, products) {
+    _product2.default.find(q).limit(req.query.limit).skip(req.query.skip).sort(sort).sort({created_at: -1}).select(select).exec(function (err, products) {
       if (err) {
         return handleError(res, err);
       }
