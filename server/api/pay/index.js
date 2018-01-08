@@ -305,20 +305,20 @@ router.get('/prepare', function (req, res) {
             var PS_AWAITING_DELIVERY = "awaiting delivery";
             var PS_DELIVERED = "delivered";
             var PS_AWAITING_REDIRECT = "awaiting redirect";
-            var SITE_URL = "http://www.mediabox.co.zw";
+            var SITE_URL = "http://advertising.mediabox.co.zw";
 
             paynowJSONObject = {
-                id: 3100,
+                id: 4599,
                 reference: orderNo,
                 amount: total,
                 additionalInfo: '',
-                returnUrl: 'http://www.mediabox.co.zw/api/pay/gettingbackfrompaynow',
-                resulturl: 'http://www.mediabox.co.zw/api/pay/paynowupdatingus',
+                returnUrl: 'https://advertising.mediabox.co.zw/api/pay/gettingbackfrompaynow',
+                resulturl: 'https://advertising.mediabox.co.zw/api/pay/paynowupdatingus',
                 authemail: '',
                 status: 'message'
 
             };
-            formData = CreateMsg(paynowJSONObject, 'b717de9d-d716-49ae-abae-df8279ceda9b');
+            formData = CreateMsg(paynowJSONObject, 'c0c49acd-a72f-4cc4-b66c-ad6d4a28535c');
 
 
             request.post({ url: 'https://www.paynow.co.zw/interface/initiatetransaction', formData: formData }, function (err, httpResponse, body) {
@@ -343,7 +343,7 @@ router.get('/prepare', function (req, res) {
                     } else if (msg["status"] === PS_OK) {
 
                         //second, check hash
-                        var validateHash = CreateHash(msg, 'b717de9d-d716-49ae-abae-df8279ceda9b');
+                        var validateHash = CreateHash(msg, 'c0c49acd-a72f-4cc4-b66c-ad6d4a28535c');
                         if (validateHash !== msg["hash"]) {
                             error = "Paynow reply hashes do not match : " + validateHash + " - " + msg["hash"];
                         } else {
@@ -468,7 +468,7 @@ router.get('/gettingbackfrompaynow', function (req, res) {
                 //close connection  
                 var msg = ParseMsg(response.body);
 
-                var MerchantKey = 'b717de9d-d716-49ae-abae-df8279ceda9b';
+                var MerchantKey = 'c0c49acd-a72f-4cc4-b66c-ad6d4a28535c';
                 var validateHash = CreateHash(msg, MerchantKey);
 
                 if (validateHash != msg["hash"]) {
@@ -549,7 +549,7 @@ router.get('/paynowupdatingus', function (req, res) {
             //close connection  
             var msg = ParseMsg(response.body);
 
-            var MerchantKey = 'b717de9d-d716-49ae-abae-df8279ceda9b';
+            var MerchantKey = 'c0c49acd-a72f-4cc4-b66c-ad6d4a28535c';
             var validateHash = CreateHash(msg, MerchantKey);
 
             if (validateHash != msg["hash"]) {
