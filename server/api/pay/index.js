@@ -305,15 +305,15 @@ router.get('/prepare', function (req, res) {
             var PS_AWAITING_DELIVERY = "awaiting delivery";
             var PS_DELIVERED = "delivered";
             var PS_AWAITING_REDIRECT = "awaiting redirect";
-            var SITE_URL = "https://mediaboxzw-demo.herokuapp.com";
+            var SITE_URL = "mediaboxzw-demo.herokuapp.com";
 
             paynowJSONObject = {
                 id: 4599,
                 reference: orderNo,
                 amount: total,
                 additionalInfo: '',
-                returnUrl: 'https://mediaboxzw-demo.herokuapp.com/api/pay/gettingbackfrompaynow',
-                resulturl: 'https://mediaboxzw-demo.herokuapp.com//api/pay/paynowupdatingus',
+                returnUrl: 'mediaboxzw-demo.herokuapp.com/api/pay/gettingbackfrompaynow',
+                resulturl: 'mediaboxzw-demo.herokuapp.com//api/pay/paynowupdatingus',
                 authemail: '',
                 status: 'message'
 
