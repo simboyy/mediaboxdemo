@@ -372,7 +372,7 @@ router.get('/prepare', function (req, res) {
                                 status: status,
                                 items: data,
                                 payment: { id: orderNo, state: "Created", cart: null, pollurl: pollUrl, email: options.email },
-                                amount: { total: subtotal / 100, currency: options.currency_code },
+                                amount: { total: subtotal , currency: options.currency_code },
                                 exchange_rate: options.exchange_rate,
                                 created: Date.now(),
                                 payment_method: 'Pay Now'
